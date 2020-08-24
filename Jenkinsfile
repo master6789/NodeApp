@@ -30,4 +30,17 @@ node {
             } 
                 echo "Trying to Push Docker Build to DockerHub"
     }
+	stage('kubernetes deploy') {
+		kubeconfigId: 'kubeconfig-credentials-id',               // REQUIRED
+
+                 configs: '<ant-glob-pattern-for-resource-config-paths>', // REQUIRED
+                 enableConfigSubstitution: false,
+        
+                 secretNamespace: '<secret-namespace>',
+                 secretName: '<secret-name>',
+                 dockerCredentials: [
+                        [credentialsId: '<credentials-id-for-docker-hub>'],
+                        [credentialsId: '<credentials-id-for-other-private-registry>', url: '<registry-url>'],
+                 ]
+)
 }
