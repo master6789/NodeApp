@@ -33,6 +33,8 @@ node {
 	
     stage('kubernetes deploy') {
 	    script {
+		    kubectl plugin list
+		    kubectl foo bar baz buz
 			withKubeCredentials(kubectlCredentials: [[caCertificate: '', clusterName: 'minikube', contextName: 'minikube', credentialsId: 'c977e7ed-bfd3-4a1a-af18-dbdb60183e71', namespace: 'cloudbees-core', serverUrl: 'https://192.168.99.111:8443']]) 
 					sh 'kubectl create -f deployment.yml'
 	    				sh "cd ${deploy_dir}; ./deploy.sh init"
