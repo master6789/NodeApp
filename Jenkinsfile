@@ -32,8 +32,7 @@ node {
     }
 	
     stage('kubernetes deploy') {
-		 secretNamespace: clodebees-core,
-                 withKubeCredentials(kubectlCredentials: [[caCertificate: '', clusterName: 'minikube', contextName: 'minikube', credentialsId: 'c977e7ed-bfd3-4a1a-af18-dbdb60183e71', namespace: 'cloudbees-core', serverUrl: 'https://192.168.99.111:8443']]) 
+	withKubeCredentials(kubectlCredentials: [[caCertificate: '', clusterName: 'minikube', contextName: 'minikube', credentialsId: 'c977e7ed-bfd3-4a1a-af18-dbdb60183e71', namespace: 'cloudbees-core', serverUrl: 'https://192.168.99.111:8443']]) 
 		    sh 'kubectl create -f deployment.yml'
     }
 
